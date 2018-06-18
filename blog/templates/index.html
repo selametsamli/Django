@@ -1,22 +1,11 @@
-<!DOCTYPE html>
+{% extends "layout.html" %}
 
-{% load static %}
+{% block body %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+<div class ="jumbotron text-center">
+        <h3>Bloğa Hoş Geldiniz</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis unde perspiciatis, nisi deserunt ullam minima fugit quia et nemo repudiandae odio accusamus consequuntur aliquid architecto cum provident voluptate ea consequatur.</p>
 
+</div>
 
-    <title>BLOG</title>
-</head>
-<body>
-    
-    <h3>Anasayfa</h3>
-
-    <p> Deneme  </p>
-
-</body>
-</html>
+{% endblock body %}
