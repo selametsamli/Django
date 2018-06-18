@@ -1,9 +1,15 @@
 from django.shortcuts import render
+from .forms import RegisterForm
 
 # Create your views here.
 
 def register(request):
-    return render(request,"register.html")
+    form = RegisterForm()
+    contex ={
+        "form": form
+    }
+
+    return render(request,"register.html",contex)
 
 
 def loginUser(request):
