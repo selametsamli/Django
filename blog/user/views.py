@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import RegisterForm,LoginForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login,authenticate
+from django.contrib.auth import login,authenticate,logout
 from django.contrib import messages
 
 
@@ -81,4 +81,6 @@ def loginUser(request):
 
 
 def logoutUser(request):
-    pass
+    logout(request)
+    messages.success(request,"Başarıyla Çıkış Yaptınız.")
+    return render(request,"index.html")
