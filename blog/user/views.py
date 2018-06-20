@@ -10,55 +10,26 @@ from django.contrib import messages
 def register(request):
 
     form = RegisterForm(request.POST or None)
-    if form.is_valid(): #clean methodu çalışır
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
+    if form.is_valid():
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
 
-            newUser = User(username=username)
-            newUser.set_password(password)
-            newUser.save()
-            login(request,newUser)
+        newUser = User(username =username)
+        newUser.set_password(password)
 
-            messages.success(request,"Başarıyla Kayıt Oldunuz")
+        newUser.save()
+        login(request,newUser)
+        messages.info(request,"Başarıyla Kayıt Oldunuz...")
 
-            return redirect("login")
-    context ={
-            "form":form
+        return redirect("index")
+    context = {
+            "form" : form
         }
-    return render(request,"register.html",context)    
-
-
-"""
-    if request.method =="POST":
-        form = RegisterForm(request.POST)
-        if form.is_valid(): #clean methodu çalışır
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-
-            newUser = User(username=username)
-            newUser.set_password(password)
-            newUser.save()
-            login(request,newUser)
-
-            return redirect("index")
-        context ={
-            "form":form
-        }
-        return render(request,"register.html",context)
-        
-    else:
-        form = RegisterForm()
-        context ={
-            "form":form
-        }
-        return render(request,"register.html",context) """
-
-   
+    return render(request,"register.html",context)
 
 def loginUser(request):
 
     form = LoginForm(request.POST or None)
-
     context = {
         "form":form
     }
@@ -67,16 +38,15 @@ def loginUser(request):
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
 
-        user = authenticate(username=username, password=password)
+        user = authenticate(username = username,password = password)
 
         if user is None:
             messages.info(request,"Kullanıcı Adı veya Parola Hatalı")
             return render(request,"login.html",context)
-        
-        messages.success(request,"Başarıyla Giriş Yaptınız.")
+
+        messages.success(request,"Başarıyla Giriş Yaptınız")
         login(request,user)
         return redirect("index")
-
     return render(request,"login.html",context)
 
 
