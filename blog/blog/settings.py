@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "article",
     "user",
     'crispy_forms',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -123,7 +124,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
