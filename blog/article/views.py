@@ -1,5 +1,6 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,redirect
 from .forms import ArticleForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -19,6 +20,14 @@ def dashboard(request):
 
 
 def addarticle(request):
-    form = ArticleForm()
+    form = ArticleForm(request.POST or None)
+    if form.is_valid():
+        article = form.save(commit=False)
+        
+        article.author = request.user
+        article.save()
+
+        messages.success(request,"Makale başarıyla oluşturuldu.")
+        return redirect("index")
 
     return render(request,"addarticle.html",{"form":form})
