@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from .forms import ArticleForm
 
 # Create your views here.
 
@@ -13,3 +14,11 @@ def index(request):
 def about(request):
     return render(request,"about.html")
 
+def dashboard(request):
+    return render(request,"dashboard.html")
+
+
+def addarticle(request):
+    form = ArticleForm()
+
+    return render(request,"addarticle.html",{"form":form})
