@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse,redirect,get_object_or_404
 from .forms import ArticleForm
 from django.contrib import messages
 from .models import Article
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -16,6 +17,8 @@ def index(request):
 def about(request):
     return render(request,"about.html")
 
+
+@login_required(login_url = "user:login")
 def dashboard(request):
 
     articles = Article.objects.filter(author=request.user)
@@ -26,7 +29,7 @@ def dashboard(request):
 
     return render(request,"dashboard.html",context)
 
-
+@login_required(login_url = "user:login")
 def addarticle(request):
     form = ArticleForm(request.POST or None, request.FILES or None)
     if form.is_valid():
@@ -46,7 +49,7 @@ def detail(request,id):
     
     return render(request,"detail.html",{"article":article})
 
-
+@login_required(login_url = "user:login")
 def update(request,id):
 
     article = get_object_or_404(Article, id =id)
@@ -63,6 +66,7 @@ def update(request,id):
 
     return render(request,"update.html",{"form":form})
 
+@login_required(login_url = "user:login")
 def delete(request,id):
     article = get_object_or_404(Article, id =id)
     article.delete()
