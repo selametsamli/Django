@@ -6,6 +6,13 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+def articles(request):
+    articles = Article.objects.all()
+
+
+    return render(request,"articles.html",{"articles":articles})
+
+
 def index(request):
 
     context ={
@@ -73,3 +80,5 @@ def delete(request,id):
 
     messages.success(request,"Makale başarıyla silindi.")
     return redirect("article:dashboard")
+
+

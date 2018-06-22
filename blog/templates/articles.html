@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+    
+<div class="row">
+    <div class="col-md-10 offset-md-3">
+            <h3> Makaleler</h3>
+            <hr>
+        
+        </div> 
+</div>
+
+
+    {% if articles %}
+
+    {% for article in articles  %}
+    
+    <div class="row">
+        <div class="col-md-10 offset-md-3">
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+    
+          <!-- Title -->
+         <a href="/articles/article/{{article.id}}"><h2 class="mt-4">{{article.title}}</h2></a> 
+    
+          <!-- Author -->
+          <p class="lead">
+            by
+            {{article.author.username}} tarafından yayınlandı
+          </p>
+    
+          <hr>
+    
+          <!-- Date/Time -->
+          <p>{{article.created_date}}</p>
+    
+          <hr>
+    
+          <!-- Preview Image -->
+         {% if article.article_image  %}
+         <a href="/articles/article/{{article.id}}"><img class="img-fluid rounded" src="{{article.article_image.url}}" alt ="">
+         </a> {% else %}
+         {% endif %}
+            
+
+          <hr>
+    
+          <!-- Post Content -->
+          <p class="lead"> 
+              {{article.content|safe}}
+         </p>
+          <hr>
+    
+        
+        
+      </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+
+    {% else %}
+        <div class="alert alert-danger">Bu blokta herhangi bir makale bulunmuyor.</div>
+    {% endif %}
+
+{% endblock body %}
