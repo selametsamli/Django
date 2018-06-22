@@ -28,7 +28,7 @@ def dashboard(request):
 
 
 def addarticle(request):
-    form = ArticleForm(request.POST or None,request.FILES or None)
+    form = ArticleForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         article = form.save(commit=False)
         
@@ -45,3 +45,20 @@ def detail(request,id):
     article = get_object_or_404(Article,id=id)
     
     return render(request,"detail.html",{"article":article})
+
+
+def update(request,id):
+
+    article = get_object_or_404(Article, id =id)
+    form = ArticleForm(request.POST or None , request.FILES or None, instance= article)
+    if form.is_valid():
+        article = form.save(commit=False)
+        
+        article.author = request.user
+        article.save()
+
+        messages.success(request,"Makale başarıyla güncelledi.")
+        return redirect("index")
+
+
+    return render(request,"update.html",{"form":form})
