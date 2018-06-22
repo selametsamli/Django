@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">RS Blog</a>
+        <a class="navbar-brand" href="{% url 'index' %}">RS Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -7,10 +7,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/about">Hakkımızda</span></a>
+              <a class="nav-link" href="{% url 'about' %}">Hakkımızda</span></a>
             </li>
             <li class="nav-item active">
-                    <a class="nav-link" href="/articles">Makaleler</span></a>
+                    <a class="nav-link" href="{% url 'article:articles' %}">Makaleler</span></a>
             </li>
            
           </ul>
@@ -21,19 +21,19 @@
           {% if request.user.is_authenticated %}
 
           <li class="nav-item active">
-              <a class="nav-link" href="/articles/dashboard">Kontrol Paneli</span></a></li>
+              <a class="nav-link" href="{% url 'article:dashboard' %}">Kontrol Paneli</span></a></li>
           <li class="nav-item active">
-              <a class="nav-link" href="/user/logout">Çıkış Yap</span></a></li> 
+              <a class="nav-link" href="{% url 'user:logout' %}">Çıkış Yap</span></a></li> 
 
 
           {% else %}
           <li class="nav-item active">
-              <a class="nav-link" href="/user/login">Giriş Yap</span></a></li>
+              <a class="nav-link" href="{% url 'user:login' %}">Giriş Yap</span></a></li>
         
 
           {% endif %}
           <li class="nav-item active">
-              <a class="nav-link" href="/user/register">Kayıt Ol</span></a></li>
+              <a class="nav-link" href="{% url 'user:register' %}">Kayıt Ol</span></a></li>
       
        
             
