@@ -66,7 +66,7 @@ def update(request,id):
 
     return render(request,"update.html",{"form":form})
 
-@login_required(login_url = "user:login")
+@login_required(login_url = "user:login" )
 def delete(request,id):
     article = get_object_or_404(Article, id =id)
     article.delete()
