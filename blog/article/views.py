@@ -36,7 +36,7 @@ def addarticle(request):
         article.save()
 
         messages.success(request,"Makale başarıyla oluşturuldu.")
-        return redirect("index")
+        return redirect("article:dashboard")
 
     return render(request,"addarticle.html",{"form":form})
 
@@ -62,3 +62,10 @@ def update(request,id):
 
 
     return render(request,"update.html",{"form":form})
+
+def delete(request,id):
+    article = get_object_or_404(Article, id =id)
+    article.delete()
+
+    messages.success(request,"Makale başarıyla silindi.")
+    return redirect("article:dashboard")
