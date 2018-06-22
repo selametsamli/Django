@@ -49,8 +49,9 @@
     
           <!-- Post Content -->
           <p class="lead"> 
-              {{article.content|safe}}
+              {{article.content|safe|truncatewords:50}}
          </p>
+         <a  style="float:right;margin-top:15px;" href="/articles/article/{{article.id}}"class ="btn btn-danger" >Devamını Oku</a>
           <hr>
     
         
