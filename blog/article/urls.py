@@ -10,5 +10,5 @@ urlpatterns =[
     path('update/<int:id>',views.update,name="update"),
     path('delete/<int:id>',views.delete,name="delete"),
     path('',views.articles,name = "articles"),
-    path('comment/<int:id>',views.addComment,name="coment"),
+    path('comment/<int:id>',views.addComment,name = "comment"),
 ]
