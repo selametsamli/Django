@@ -53,7 +53,7 @@
     
           <!-- Preview Image -->
          {% if article.article_image  %}
-         <a href="{% url 'articles:article' article.id %}""><img class="img-fluid rounded" src="{{article.article_image.url}}" alt ="">
+         <a href="{% url 'articles:article' article.id %}"><img class="img-fluid rounded" src="{{article.article_image.url}}" alt ="">
          </a> {% else %}
          {% endif %}
             

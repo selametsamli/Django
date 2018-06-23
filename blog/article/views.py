@@ -12,8 +12,8 @@ def articles(request):
     if keyword:
         articles = Article.objects.filter(title__contains = keyword)
         return render(request,"articles.html",{"articles":articles})
-
     articles = Article.objects.all()
+
     return render(request,"articles.html",{"articles":articles})
 
 
@@ -85,4 +85,7 @@ def delete(request,id):
     messages.success(request,"Makale başarıyla silindi.")
     return redirect("article:dashboard")
 
+
+def addComment(request,id):
+    pass
 
