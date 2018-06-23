@@ -57,8 +57,10 @@ def addarticle(request):
 def detail(request,id):
     #article = Article.objects.filter(id = id).first()
     article = get_object_or_404(Article,id=id)
+
+    comments = article.comments.all()
     
-    return render(request,"detail.html",{"article":article})
+    return render(request,"detail.html",{"article":article,"comments":comments})
 
 @login_required(login_url = "user:login")
 def update(request,id):

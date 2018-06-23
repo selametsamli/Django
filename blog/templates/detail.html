@@ -31,13 +31,39 @@
             
 
           <hr>
-    
+          
           <!-- Post Content -->
           <p class="lead"> 
               {{article.content|safe}}
          </p>
           <hr>
-    
+          <h4>Yorumlar</h4>
+          <hr>
+         
+          {% if comments %}
+
+          {% for comment in comments  %}
+
+          <!-- Single Comment -->
+          <div class="media mb-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">{{comment.comment_author}}</h5>
+                {{comment.comment_date}} <br>
+                {{comment.comment_content}}  
+              </div>
+            </div>
+
+          {% endfor %}
+
+           
+
+          {% else %}
+
+            <div class="alert alert-danger">Bu makaleye yorum yazılmamış</div>
+          {% endif %}
+
+
         <!-- Comments Form -->
       <div class="card my-4">
         <h5 class="card-header">Yorum Ekle</h5>
@@ -57,6 +83,8 @@
           </form>
         </div>
       </div>
+
+
         </div>
         
       </div>
